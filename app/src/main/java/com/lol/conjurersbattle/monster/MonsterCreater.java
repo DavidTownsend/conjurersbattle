@@ -21,7 +21,7 @@ public class MonsterCreater {
     }
 
     private Integer getRandomNumber(Integer number) {
-        Double range = FightingEngine.maxMultiplier - FightingEngine.minMultiplier + 1;
+        Double range = (FightingEngine.maxMultiplier - FightingEngine.minMultiplier) * number;
         return (int) (Math.random() * range) + number;
     }
 

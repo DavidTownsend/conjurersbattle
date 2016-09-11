@@ -6,10 +6,10 @@ import java.util.List;
 
 public class TurnOrderEngine {
     private Monster calculateFastestMonster(List<Monster> monsters) {
-        Monster fastestMonster = new Monster();
+        Monster fastestMonster = null;
 
         for (Monster monster : monsters) {
-            if (fastestMonster.getAttackTurnSpeed() != null) {
+            if (fastestMonster != null) {
                 if (monster.getAttackTurnSpeed() > fastestMonster.getAttackTurnSpeed()) {
                     fastestMonster = monster;
                 }
@@ -23,8 +23,9 @@ public class TurnOrderEngine {
 
     private void increaseTurn(List<Monster> monsters) {
         for (Monster monster : monsters) {
-            Integer attackTurnSpeed = 0;
-            attackTurnSpeed += monster.getAttackTurnSpeed() / 100 + 10;
+            Integer attackTurnSpeed = monster.getAttackTurnSpeed();
+            Double speedMultiplier = Double.valueOf(monster.getSpeed()) / 100;
+            attackTurnSpeed +=  (int) (speedMultiplier * 10);
             monster.setAttackTurnSpeed(attackTurnSpeed);
         }
     }
@@ -43,10 +44,10 @@ public class TurnOrderEngine {
 
         do {
             monsterToGo = monsterToGo(monsters);
-            if (monsterToGo != null) {
+            if (monsterToGo == null) {
                 increaseTurn(monsters);
             }
-        } while (monsterToGo.equals(null));
+        } while (null == monsterToGo);
 
         return monsterToGo;
     }
