@@ -9,7 +9,7 @@ public class Monster {
     Integer speed;
     Integer hp;
     Integer element;
-<<<<<<< HEAD
+    Integer attackTurnSpeed;
 
     public int elementAdvantage() throws Exception {
         if (element == Constants.WATER_TYPE) {
@@ -31,7 +31,7 @@ public class Monster {
                 return false;
             }
         } else if (element == Constants.WATER_TYPE) {
-            if (enemyElement == Constants.WATER_TYPE) {
+            if (enemyElement == Constants.FIRE_TYPE) {
                 return true;
             } else {
                 return false;
@@ -48,7 +48,51 @@ public class Monster {
     }
 
     public boolean hasNeutralElement(Integer enemyElement) throws Exception {
-        return true;
+        if (element == Constants.FIRE_TYPE) {
+            if (enemyElement == Constants.FIRE_TYPE) {
+                return true;
+            } else {
+                return false;
+            }
+        } else if (element == Constants.WATER_TYPE) {
+            if (enemyElement == Constants.WATER_TYPE) {
+                return true;
+            } else {
+                return false;
+            }
+        } else if (element == Constants.WIND_TYPE) {
+            if (enemyElement == Constants.WIND_TYPE) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            throw new Exception();
+        }
+    }
+
+    public boolean hasDisadvantageElement(Integer enemyElement) throws Exception {
+        if (element == Constants.FIRE_TYPE) {
+            if (enemyElement == Constants.WATER_TYPE) {
+                return true;
+            } else {
+                return false;
+            }
+        } else if (element == Constants.WATER_TYPE) {
+            if (enemyElement == Constants.WIND_TYPE) {
+                return true;
+            } else {
+                return false;
+            }
+        } else if (element == Constants.WIND_TYPE) {
+            if (enemyElement == Constants.FIRE_TYPE) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            throw new Exception();
+        }
     }
 
     public Integer getId() {
@@ -59,10 +103,6 @@ public class Monster {
         this.id = id;
     }
 
-=======
-    Integer attackTurnSpeed;
-    
->>>>>>> d4245e9f2b137cb79a8e975d6b625ec7139b7592
     public Integer getAttack() {
         return attack;
     }

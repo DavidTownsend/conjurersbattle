@@ -16,11 +16,14 @@ public class EnemyPicker {
     public int selectEnemy(Monster attacker, List<Monster> enemies) throws Exception {
         List<Monster> advantageEnemies = new ArrayList<>();
         List<Monster> neutralEnemies = new ArrayList<>();
+        List<Monster> disadvantageEnemies = new ArrayList<>();
         for (Monster enemy : enemies) {
             if (attacker.hasElementalAdvantage(enemy.getElement())) {
                 advantageEnemies.add(enemy);
             } else if (attacker.hasNeutralElement(enemy.getElement())) {
-
+                neutralEnemies.add(enemy);
+            } else if (attacker.hasDisadvantageElement(enemy.getElement())) {
+                disadvantageEnemies.add(enemy);
             }
         }
 
@@ -30,7 +33,18 @@ public class EnemyPicker {
             return rand.nextInt(advantageEnemies.size()) + 1;
         }
 
-        return 0;
+        if (CollectionUtils.isNotEmpty(advantageEnemies)) {
+            Random rand = new Random();
 
+            return rand.nextInt(advantageEnemies.size()) + 1;
+        }
+
+        if (CollectionUtils.isNotEmpty(advantageEnemies)) {
+            Random rand = new Random();
+
+            return rand.nextInt(advantageEnemies.size()) + 1;
+        }
+
+        throw new Exception();
     }
 }
