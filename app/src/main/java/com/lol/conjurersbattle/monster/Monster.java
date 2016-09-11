@@ -14,6 +14,16 @@ public class Monster {
     Skill skill1;
     Skill skill2;
 
+    public Monster(Integer attack, Integer defence, Integer speed, Integer maxHp, Integer element) {
+        this.attack = attack;
+        this.defence = defence;
+        this.speed = speed;
+        this.maxHp = maxHp;
+        this.currentHp = maxHp;
+        this.element = element;
+        this.attackTurnSpeed = 0;
+    }
+
     public boolean hasLowHealth() {
         if (currentHpPercent() < .3) {
             return true;
