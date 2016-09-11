@@ -9,15 +9,12 @@ import java.util.List;
  * Created by Schimms on 9/10/2016.
  */
 public class EnemyPicker {
-    private final int WATERTYPE = 1;
-    private final int FIRETYPE = 2;
-    private final int WINDTYPE = 3;
 
-    public void selectEnemy(List<Monster> enemies) {
+    public void selectEnemy(Monster attacker, List<Monster> enemies) throws Exception {
         List possibleEnemies = new ArrayList<Monster>();
-        for (Monster m : enemies) {
-            if (m.getElement() == WATERTYPE) {
-                possibleEnemies.add(m);
+        for (Monster enemy : enemies) {
+            if (attacker.hasElementalAdvantage(enemy.getElement())) {
+                possibleEnemies.add(enemy);
             }
         }
 

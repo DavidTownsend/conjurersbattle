@@ -1,11 +1,49 @@
 package com.lol.conjurersbattle.monster;
 
+import com.lol.conjurersbattle.common.Constants;
+
 public class Monster {
     Integer attack;
     Integer defence;
     Integer speed;
     Integer hp;
     Integer element;
+
+    public int elementAdvantage() throws Exception {
+        if (element == Constants.WATER_TYPE) {
+            return Constants.FIRE_TYPE;
+        } else if (element == Constants.FIRE_TYPE) {
+            return Constants.WIND_TYPE;
+        } else if (element == Constants.WIND_TYPE) {
+            return Constants.WATER_TYPE;
+        } else {
+            throw new Exception();
+        }
+    }
+
+    public boolean hasElementalAdvantage(Integer enemyElement) throws Exception {
+        if (element == Constants.FIRE_TYPE) {
+            if (enemyElement == Constants.WIND_TYPE) {
+                return true;
+            } else {
+                return false;
+            }
+        } else if (element == Constants.WATER_TYPE) {
+            if (enemyElement == Constants.WATER_TYPE) {
+                return true;
+            } else {
+                return false;
+            }
+        } else if (element == Constants.WIND_TYPE) {
+            if (enemyElement == Constants.WATER_TYPE) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            throw new Exception();
+        }
+    }
 
     public Integer getAttack() {
         return attack;
