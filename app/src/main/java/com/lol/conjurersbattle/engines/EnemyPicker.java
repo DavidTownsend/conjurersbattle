@@ -11,20 +11,22 @@ import java.util.List;
  */
 public class EnemyPicker {
 
-    public int selectEnemy(Monster attacker, List<Monster> enemies) throws Exception {
+    public Monster selectEnemy(Monster attacker, List<Monster> enemies) throws Exception {
         if (CollectionUtils.isEmpty(enemies)) {
             throw new Exception();
         }
 
         if (enemies.size() == 1) {
-            return enemies.get(0).getId();
+            return enemies.get(0);
         }
 
         Monster enemyToAttack = enemies.get(0);
 
         // Intentionally skipping the first enemy because we put the first enemy in enemyToAttack already
-        for (int i = 1; i < enemies.size(); i++) {
-            Monster enemy = enemies.get(i);
+        for (Monster enemy : enemies) {
+            if (enemy.getId() == enemyToAttack.getId()) {
+                continue;
+            }
             if (enemy.hasLowHealth()) {
                 if (!enemyToAttack.hasLowHealth()) {
                     enemyToAttack = enemy;
@@ -60,6 +62,6 @@ public class EnemyPicker {
             }
         }
 
-        return enemyToAttack.getId();
+        return enemyToAttack;
     }
 }

@@ -11,6 +11,8 @@ public class Monster {
     Integer maxHp;
     Integer element;
     Integer attackTurnSpeed;
+    Skill skill1;
+    Skill skill2;
 
     public Monster(Integer attack, Integer defence, Integer speed, Integer maxHp, Integer element) {
         this.attack = attack;
@@ -180,5 +182,21 @@ public class Monster {
 
     public void setMaxHp(Integer maxHp) {
         this.maxHp = maxHp;
+    }
+
+    public Skill getSkill1() {
+        return skill1;
+    }
+
+    public void setSkill1(Skill skill1) {
+        this.skill1 = skill1;
+    }
+
+    public Skill getSkill2() {
+        return skill2;
+    }
+
+    public void setSkill2(Skill skill2) {
+        this.skill2 = skill2;
     }
 }
