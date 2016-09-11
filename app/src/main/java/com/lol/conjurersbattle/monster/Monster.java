@@ -3,6 +3,7 @@ package com.lol.conjurersbattle.monster;
 import com.lol.conjurersbattle.common.Constants;
 
 public class Monster {
+    Integer id;
     Integer attack;
     Integer defence;
     Integer speed;
@@ -43,6 +44,18 @@ public class Monster {
         } else {
             throw new Exception();
         }
+    }
+
+    public boolean hasNeutralElement(Integer enemyElement) throws Exception {
+        return true;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getAttack() {
