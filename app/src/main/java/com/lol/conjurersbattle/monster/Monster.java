@@ -13,6 +13,7 @@ public class Monster {
     Integer attackTurnSpeed;
     Skill skill1;
     Skill skill2;
+    String name;
 
     public Monster(Integer attack, Integer defence, Integer speed, Integer maxHp, Integer element) {
         this.attack = attack;
@@ -198,5 +199,13 @@ public class Monster {
 
     public void setSkill2(Skill skill2) {
         this.skill2 = skill2;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
