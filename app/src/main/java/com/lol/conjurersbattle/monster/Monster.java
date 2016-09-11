@@ -4,7 +4,8 @@ public class Monster {
     Integer attack;
     Integer defence;
     Integer speed;
-    Integer Hp;
+    Integer hp;
+    Integer element;
 
     public Integer getAttack() {
         return attack;
@@ -31,10 +32,18 @@ public class Monster {
     }
 
     public Integer getHp() {
-        return Hp;
+        return hp;
     }
 
     public void setHp(Integer hp) {
-        Hp = hp;
+        this.hp = hp;
+    }
+
+    public Integer getElement() {
+        return element;
+    }
+
+    public void setElement(Integer element) {
+        this.element = element;
     }
 }
