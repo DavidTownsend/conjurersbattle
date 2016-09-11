@@ -7,9 +7,22 @@ public class Monster {
     Integer attack;
     Integer defence;
     Integer speed;
-    Integer hp;
+    Integer currentHp;
+    Integer maxHp;
     Integer element;
     Integer attackTurnSpeed;
+
+    public boolean hasLowHealth() {
+        if (currentHpPercent() < .3) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public double currentHpPercent() {
+        return currentHp / maxHp;
+    }
 
     public int elementAdvantage() throws Exception {
         if (element == Constants.WATER_TYPE) {
@@ -127,14 +140,6 @@ public class Monster {
         this.speed = speed;
     }
 
-    public Integer getHp() {
-        return hp;
-    }
-
-    public void setHp(Integer hp) {
-        this.hp = hp;
-    }
-
     public Integer getElement() {
         return element;
     }
@@ -149,5 +154,21 @@ public class Monster {
 
     public void setAttackTurnSpeed(Integer attackTurnSpeed) {
         this.attackTurnSpeed = attackTurnSpeed;
+    }
+
+    public Integer getCurrentHp() {
+        return currentHp;
+    }
+
+    public void setCurrentHp(Integer currentHp) {
+        this.currentHp = currentHp;
+    }
+
+    public Integer getMaxHp() {
+        return maxHp;
+    }
+
+    public void setMaxHp(Integer maxHp) {
+        this.maxHp = maxHp;
     }
 }
