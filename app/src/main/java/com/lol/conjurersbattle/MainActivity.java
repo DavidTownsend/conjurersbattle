@@ -1,7 +1,7 @@
 package com.lol.conjurersbattle;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
@@ -21,7 +21,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 MainEngine mainEngine = new MainEngine();
-                mainEngine.startTurn();
+                try {
+                    mainEngine.startTurn();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
