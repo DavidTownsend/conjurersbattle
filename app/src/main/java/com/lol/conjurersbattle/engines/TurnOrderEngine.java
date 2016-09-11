@@ -25,14 +25,14 @@ public class TurnOrderEngine {
         for (Monster monster : monsters) {
             Integer attackTurnSpeed = monster.getAttackTurnSpeed();
             Double speedMultiplier = Double.valueOf(monster.getSpeed()) / 100;
-            attackTurnSpeed +=  (int) (speedMultiplier * 10);
+            attackTurnSpeed +=  (int) (speedMultiplier * 100);
             monster.setAttackTurnSpeed(attackTurnSpeed);
         }
     }
 
     private Monster monsterToGo(List<Monster> monsters) {
         Monster monster = calculateFastestMonster(monsters);
-        if (monster.getAttackTurnSpeed() > 100) {
+        if (monster.getAttackTurnSpeed() > 1000) {
             return monster;
         }
 
