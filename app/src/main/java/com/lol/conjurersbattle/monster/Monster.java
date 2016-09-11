@@ -9,6 +9,7 @@ public class Monster {
     Integer speed;
     Integer hp;
     Integer element;
+<<<<<<< HEAD
 
     public int elementAdvantage() throws Exception {
         if (element == Constants.WATER_TYPE) {
@@ -58,6 +59,10 @@ public class Monster {
         this.id = id;
     }
 
+=======
+    Integer attackTurnSpeed;
+    
+>>>>>>> d4245e9f2b137cb79a8e975d6b625ec7139b7592
     public Integer getAttack() {
         return attack;
     }
@@ -96,5 +101,13 @@ public class Monster {
 
     public void setElement(Integer element) {
         this.element = element;
+    }
+
+    public Integer getAttackTurnSpeed() {
+        return attackTurnSpeed;
+    }
+
+    public void setAttackTurnSpeed(Integer attackTurnSpeed) {
+        this.attackTurnSpeed = attackTurnSpeed;
     }
 }
