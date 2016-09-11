@@ -6,7 +6,8 @@ public class Monster {
     Integer speed;
     Integer hp;
     Integer element;
-
+    Integer attackTurnSpeed;
+    
     public Integer getAttack() {
         return attack;
     }
@@ -45,5 +46,13 @@ public class Monster {
 
     public void setElement(Integer element) {
         this.element = element;
+    }
+
+    public Integer getAttackTurnSpeed() {
+        return attackTurnSpeed;
+    }
+
+    public void setAttackTurnSpeed(Integer attackTurnSpeed) {
+        this.attackTurnSpeed = attackTurnSpeed;
     }
 }
