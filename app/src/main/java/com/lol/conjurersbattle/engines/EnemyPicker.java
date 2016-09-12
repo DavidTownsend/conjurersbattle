@@ -32,30 +32,30 @@ public class EnemyPicker {
                     enemyToAttack = enemy;
                     continue;
                 }
-                if (attacker.hasElementalAdvantage(enemy.getElement())) {
-                    if (!attacker.hasElementalAdvantage(enemyToAttack.getElement())) {
+                if (attacker.getElement().hasElementalAdvantage(enemy.getElement().getElementType())) {
+                    if (!attacker.getElement().hasElementalAdvantage(enemyToAttack.getElement().getElementType())) {
                         enemyToAttack = enemy;
                         continue;
                     }
                 }
-                if (attacker.hasNeutralElement(enemy.getElement())) {
-                    if (!attacker.hasElementalAdvantage(enemy.getElement()) &&
-                            !attacker.hasNeutralElement(enemyToAttack.getElement())) {
+                if (attacker.getElement().hasNeutralElement(enemy.getElement().getElementType())) {
+                    if (!attacker.getElement().hasElementalAdvantage(enemy.getElement().getElementType()) &&
+                            !attacker.getElement().hasNeutralElement(enemyToAttack.getElement().getElementType())) {
                         enemyToAttack = enemy;
                         continue;
                     }
                 }
             }
 
-            if (attacker.hasElementalAdvantage(enemy.getElement())) {
-                if (!attacker.hasElementalAdvantage(enemyToAttack.getElement())) {
+            if (attacker.getElement().hasElementalAdvantage(enemy.getElement().getElementType())) {
+                if (!attacker.getElement().hasElementalAdvantage(enemyToAttack.getElement().getElementType())) {
                     enemyToAttack = enemy;
                     continue;
                 }
             }
-            if (attacker.hasNeutralElement(enemy.getElement())) {
-                if (!attacker.hasElementalAdvantage(enemy.getElement()) &&
-                        !attacker.hasNeutralElement(enemyToAttack.getElement())) {
+            if (attacker.getElement().hasNeutralElement(enemy.getElement().getElementType())) {
+                if (!attacker.getElement().hasElementalAdvantage(enemy.getElement().getElementType()) &&
+                        !attacker.getElement().hasNeutralElement(enemyToAttack.getElement().getElementType())) {
                     enemyToAttack = enemy;
                     continue;
                 }

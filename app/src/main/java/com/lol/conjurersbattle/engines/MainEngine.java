@@ -13,18 +13,20 @@ public class MainEngine {
         TurnOrderEngine turnOrderEngine = new TurnOrderEngine();
         EnemyPicker enemyPicker = new EnemyPicker();
         FightingEngine fightingEngine = new FightingEngine();
+        SkillPicker skillPicker = new SkillPicker();
 
         List<Monster> myTeam = monsterCreater.createMonsterList();
         List<Monster> enemyTeam = monsterCreater.createMonsterList();
         List<Monster> allMonsters = addBothListsTogether(myTeam, enemyTeam);
 
         Monster attackMonster = turnOrderEngine.increaseTurnUntilMonsterAttack(allMonsters);
-        Monster defendingMonster = enemyPicker.selectEnemy(attackMonster, enemyTeam);
-        Integer damageTaken = fightingEngine.calculateAttackDamage(attackMonster.getAttack(), defendingMonster.getDefence());
+        //Skill skill = skillPicker.pickSkill(attackMonster, myTeam, enemyTeam);
+
+        fightingEngine.doSkill(attackMonster, attackMonster.getSkill1(), myTeam, enemyTeam);
     }
 
     private List<Monster> addBothListsTogether(List<Monster> myTeam, List<Monster> enemyTeam) {
-        List<Monster> allMonsters = new ArrayList<Monster>();
+        List<Monster> allMonsters = new ArrayList<>();
 
         int id = 0;
         for (int i = 0; i < 4; i++) {

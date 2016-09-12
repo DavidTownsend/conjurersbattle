@@ -1,23 +1,30 @@
 package com.lol.conjurersbattle.monster;
 
-import com.lol.conjurersbattle.common.Constants;
+import com.lol.conjurersbattle.Effect.Effect;
+import com.lol.conjurersbattle.common.Element;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Monster {
-    Integer id;
-    Integer attack;
-    Integer defence;
-    Integer speed;
-    Integer currentHp;
-    Integer maxHp;
-    Integer element;
-    Integer attackTurnSpeed;
-    Skill skill1;
-    Skill skill2;
-    String name;
+    private Integer id;
+    private Integer level;
+    private Integer attack;
+    private Integer defense;
+    private Integer speed;
+    private Integer currentHp;
+    private Integer maxHp;
+    private Element element;
+    private Integer attackTurnSpeed;
+    private Skill skill1;
+    private Skill skill2;
+    private Skill skill3;
+    private List<Effect> effects = new ArrayList<>();
+    private String name;
 
-    public Monster(Integer attack, Integer defence, Integer speed, Integer maxHp, Integer element) {
+    public Monster(Integer attack, Integer defense, Integer speed, Integer maxHp, Element element) {
         this.attack = attack;
-        this.defence = defence;
+        this.defense = defense;
         this.speed = speed;
         this.maxHp = maxHp;
         this.currentHp = maxHp;
@@ -37,88 +44,8 @@ public class Monster {
         return currentHp / maxHp;
     }
 
-    public int elementAdvantage() throws Exception {
-        if (element == Constants.WATER_TYPE) {
-            return Constants.FIRE_TYPE;
-        } else if (element == Constants.FIRE_TYPE) {
-            return Constants.WIND_TYPE;
-        } else if (element == Constants.WIND_TYPE) {
-            return Constants.WATER_TYPE;
-        } else {
-            throw new Exception();
-        }
-    }
-
-    public boolean hasElementalAdvantage(Integer enemyElement) throws Exception {
-        if (element == Constants.FIRE_TYPE) {
-            if (enemyElement == Constants.WIND_TYPE) {
-                return true;
-            } else {
-                return false;
-            }
-        } else if (element == Constants.WATER_TYPE) {
-            if (enemyElement == Constants.FIRE_TYPE) {
-                return true;
-            } else {
-                return false;
-            }
-        } else if (element == Constants.WIND_TYPE) {
-            if (enemyElement == Constants.WATER_TYPE) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            throw new Exception();
-        }
-    }
-
-    public boolean hasNeutralElement(Integer enemyElement) throws Exception {
-        if (element == Constants.FIRE_TYPE) {
-            if (enemyElement == Constants.FIRE_TYPE) {
-                return true;
-            } else {
-                return false;
-            }
-        } else if (element == Constants.WATER_TYPE) {
-            if (enemyElement == Constants.WATER_TYPE) {
-                return true;
-            } else {
-                return false;
-            }
-        } else if (element == Constants.WIND_TYPE) {
-            if (enemyElement == Constants.WIND_TYPE) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            throw new Exception();
-        }
-    }
-
-    public boolean hasDisadvantageElement(Integer enemyElement) throws Exception {
-        if (element == Constants.FIRE_TYPE) {
-            if (enemyElement == Constants.WATER_TYPE) {
-                return true;
-            } else {
-                return false;
-            }
-        } else if (element == Constants.WATER_TYPE) {
-            if (enemyElement == Constants.WIND_TYPE) {
-                return true;
-            } else {
-                return false;
-            }
-        } else if (element == Constants.WIND_TYPE) {
-            if (enemyElement == Constants.FIRE_TYPE) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            throw new Exception();
-        }
+    public void addEffect(Effect effect){
+        effects.add(effect);
     }
 
     public Integer getId() {
@@ -137,12 +64,12 @@ public class Monster {
         this.attack = attack;
     }
 
-    public Integer getDefence() {
-        return defence;
+    public Integer getdefense() {
+        return defense;
     }
 
-    public void setDefence(Integer defence) {
-        this.defence = defence;
+    public void setdefense(Integer defense) {
+        this.defense = defense;
     }
 
     public Integer getSpeed() {
@@ -153,11 +80,11 @@ public class Monster {
         this.speed = speed;
     }
 
-    public Integer getElement() {
+    public Element getElement() {
         return element;
     }
 
-    public void setElement(Integer element) {
+    public void setElement(Element element) {
         this.element = element;
     }
 
@@ -185,6 +112,14 @@ public class Monster {
         this.maxHp = maxHp;
     }
 
+    public Skill getSkill3() {
+        return skill3;
+    }
+
+    public void setSkill3(Skill skill3) {
+        this.skill3 = skill3;
+    }
+
     public Skill getSkill1() {
         return skill1;
     }
@@ -207,5 +142,21 @@ public class Monster {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Effect> getEffects() {
+        return effects;
+    }
+
+    public void setEffects(List<Effect> effects) {
+        this.effects = effects;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 }
