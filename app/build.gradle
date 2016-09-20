@@ -28,4 +28,10 @@ dependencies {
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'org.apache.commons:commons-collections4:4.0'
     compile 'com.jakewharton:butterknife:6.0.0'
+
+    //Not sure why this looks different
+    compile group: 'javax.inject', name: 'javax.inject', version: '1'
+
+
+    androidTestCompile 'org.mockito:mockito-core:1.9.5'
 }

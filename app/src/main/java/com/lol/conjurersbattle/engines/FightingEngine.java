@@ -1,8 +1,8 @@
 package com.lol.conjurersbattle.engines;
 
 import com.lol.conjurersbattle.Effect.Effect;
-import com.lol.conjurersbattle.monster.Skill;
 import com.lol.conjurersbattle.monster.Monster;
+import com.lol.conjurersbattle.monster.Skill;
 
 import java.util.List;
 import java.util.Random;
@@ -34,71 +34,70 @@ public class FightingEngine {
     }
 
     public void doEffect(Effect effect, Monster attackingMonster, Monster targetMonster, List<Monster> allies, List<Monster> enemies) {
-        Effect.BeneficialEffect beneficialEffect = effect.getBeneficialEffect();
-        Effect.HarmfulEffect harmfulEffect = effect.getHarmfulEffect();
-        Effect.OtherEffect otherEffect = effect.getOtherEffect();
+        Effect.EffectType effectType = effect.getEffectType();
 
-        if (beneficialEffect != null) {
-            if (beneficialEffect == Effect.BeneficialEffect.HEAL) {
-                if (otherEffect != null && otherEffect == Effect.OtherEffect.AOE) {
-                    for (Monster monster : allies){
-                        if(effect.getScalesWith() == Effect.ScalesWith.MAX_HP){
-                            Integer healedAmount = (int) (monster.getMaxHp() * (Double.valueOf(effect.getMultiplier()) / 100.0 ));
+        if (effectType != null) {
+            if (effectType == Effect.EffectType.HEAL) {
+                if (effect.isAoe()) {
+                    for (Monster monster : allies) {
+                        if (effect.getScalesWith() == Effect.ScalesWith.MAX_HP) {
+                            Integer healedAmount = (int) (monster.getMaxHp() * (Double.valueOf(effect.getMultiplier()) / 100.0));
                             Integer healedToHp = monster.getCurrentHp() + healedAmount;
                             monster.setCurrentHp(healedToHp > monster.getMaxHp() ? monster.getMaxHp() : healedToHp);
                         }
                     }
                 } else {
-                    //HEAL Target Monster
+                    // HEAL Target Monster
                 }
             }
-            if (beneficialEffect == Effect.BeneficialEffect.SHIELD) {
-                if (otherEffect != null && otherEffect == Effect.OtherEffect.AOE) {
 
+            if (effectType == Effect.EffectType.SHIELD) {
+                if (effect.isAoe()) {
                     //AOE SHIELD TEAM
                     Integer level = 40;
-                    if(effect.getScalesWith() == Effect.ScalesWith.LEVEL){
+                    if (effect.getScalesWith() == Effect.ScalesWith.LEVEL) {
                         level = attackingMonster.getLevel();
                     }
 
+                    Effect effectToBeApplied = new Effect();
+                    effectToBeApplied.setDuration(effect.getDuration());
+                    effectToBeApplied.setAmount(level * (int) effect.getMultiplier());
 
-                    Effect effectMonster = new Effect();
-                    effectMonster.setDuration(effect.getDuration());
-                    // need to set amount
-                    // effectMonster.
-                    for (Monster monster : allies){
-                        monster.addEffect(effectMonster);
+                    for (Monster monster : allies) {
+                        monster.addEffect(effectToBeApplied);
                     }
                 } else {
                     //SHIELD target monster
                 }
             }
-        }
 
-        if (harmfulEffect != null) {
-            if (otherEffect != null) {
-
-            } else {
-                if (harmfulEffect == Effect.HarmfulEffect.CONTINUOUS_DMG) {
+            if (effectType == Effect.EffectType.CONTINUOUS_DMG) {
+                if (effect.isAoe()) {
+                    for (Monster monster : allies) {
+                        if (successfulToApply(effect.getChanceToApply())) {
+                            monster.addEffect(effect);
+                        }
+                    }
+                } else {
                     if (successfulToApply(effect.getChanceToApply())) {
-                        //Apply Effect to Defending Monster
+                        targetMonster.addEffect(effect);
                     }
                 }
             }
         }
 
-
         if (effect.isDamageOpponent()) {
-            if (otherEffect != null) {
-                if (otherEffect == Effect.OtherEffect.AOE) {
-                    //DO AOE DAMGE
-                } else {
-                    //DO SINGLE target damage
+            if (effect.isAoe()) {
+                //DO AOE DAMGE
+            } else {
+                if (effect.getScalesWith() == Effect.ScalesWith.ATTACK) {
+                    Integer damage = calculateAttackDamage(attackingMonster.getAttack(), targetMonster.getdefense(), effect.getMultiplier());
+                    //Do something with damage
                 }
             }
-            //DO Single Target Damage
         }
     }
+
 
     private boolean successfulToApply(int chance) {
         boolean successful = false;

@@ -6,7 +6,14 @@ import com.lol.conjurersbattle.monster.MonsterCreater;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import butterknife.ButterKnife;
+
 public class MainEngine {
+
+    //@Inject
+    //private MonsterCreater mMonsterCreater;
 
     public void startTurn() throws Exception {
         MonsterCreater monsterCreater = new MonsterCreater();

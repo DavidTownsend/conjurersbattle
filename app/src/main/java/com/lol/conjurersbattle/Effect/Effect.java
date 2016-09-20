@@ -1,16 +1,10 @@
 package com.lol.conjurersbattle.Effect;
 
 public class Effect {
-    public enum BeneficialEffect {
-        IMMUNITY, ATTACK, CRIT_RATE, DEFENSE, SPEED, INVINCIBLE, SHIELD, HEAL
-    }
-
-    public enum HarmfulEffect {
-        BOMB, BRAND, CONTINUOUS_DMG, ATTACK, DEFENSE, SPEED, FREEZE, PROVOKE, SLEEP, SILENCE, STUN
-    }
-
-    public enum OtherEffect {
-        ADDITIONAL_ATTACK, ADDITIONAL_TURN, ALLY_ATTACK, AOE, CLEANSE, DECREASE_ATTACK_BAR, IGNORE_DEFENSE, INCREASE_ATB, INCREASE_COOLTIME
+    public enum EffectType {
+        IMMUNITY, ATTACK_BUFF, CRIT_RATE, DEFENSE_BUFF, SPEED_BUFF, INVINCIBLE, SHIELD, HEAL, BOMB, BRAND, CONTINUOUS_DMG, ATTACK_DEBUFF, DEFENSE_DEBUFF,
+        SPEED_DEBUFF, FREEZE, PROVOKE, SLEEP, SILENCE, STUN, DDITIONAL_ATTACK, ADDITIONAL_TURN, ALLY_ATTACK, CLEANSE,
+        DECREASE_ATTACK_BAR, IGNORE_DEFENSE, INCREASE_ATB, INCREASE_COOLTIME
     }
 
     public enum ScalesWith {
@@ -20,11 +14,19 @@ public class Effect {
     private double multiplier;
     private int duration;
     private ScalesWith scalesWith;
-    private BeneficialEffect beneficialEffect;
-    private HarmfulEffect harmfulEffect;
-    private OtherEffect otherEffect;
+    private EffectType effectType;
     private boolean damageOpponent = true;
     private int chanceToApply;
+    private boolean aoe;
+    private int amount;
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
 
     public double getMultiplier() {
         return multiplier;
@@ -50,30 +52,6 @@ public class Effect {
         this.scalesWith = scalesWith;
     }
 
-    public BeneficialEffect getBeneficialEffect() {
-        return beneficialEffect;
-    }
-
-    public void setBeneficialEffect(BeneficialEffect beneficialEffect) {
-        this.beneficialEffect = beneficialEffect;
-    }
-
-    public HarmfulEffect getHarmfulEffect() {
-        return harmfulEffect;
-    }
-
-    public void setHarmfulEffect(HarmfulEffect harmfulEffect) {
-        this.harmfulEffect = harmfulEffect;
-    }
-
-    public OtherEffect getOtherEffect() {
-        return otherEffect;
-    }
-
-    public void setOtherEffect(OtherEffect otherEffect) {
-        this.otherEffect = otherEffect;
-    }
-
     public boolean isDamageOpponent() {
         return damageOpponent;
     }
@@ -88,5 +66,21 @@ public class Effect {
 
     public void setChanceToApply(int chanceToApply) {
         this.chanceToApply = chanceToApply;
+    }
+
+    public EffectType getEffectType() {
+        return effectType;
+    }
+
+    public void setEffectType(EffectType effectType) {
+        this.effectType = effectType;
+    }
+
+    public boolean isAoe() {
+        return aoe;
+    }
+
+    public void setAoe(boolean aoe) {
+        this.aoe = aoe;
     }
 }

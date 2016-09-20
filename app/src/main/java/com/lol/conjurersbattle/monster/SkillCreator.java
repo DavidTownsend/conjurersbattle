@@ -6,7 +6,7 @@ public class SkillCreator {
     public Skill createWindyCutSkill() {
         Skill skill = new Skill();
         Effect effect = new Effect();
-        effect.setHarmfulEffect(Effect.HarmfulEffect.CONTINUOUS_DMG);
+        effect.setEffectType(Effect.EffectType.CONTINUOUS_DMG);
         effect.setScalesWith(Effect.ScalesWith.ATTACK);
         effect.setMultiplier(3.7);
         effect.setDamageOpponent(true);
@@ -21,15 +21,15 @@ public class SkillCreator {
 
         Skill skill = new Skill();
         Effect effect = new Effect();
-        effect.setOtherEffect(Effect.OtherEffect.AOE);
+        effect.setAoe(true);
         effect.setScalesWith(Effect.ScalesWith.ATTACK);
         effect.setMultiplier(2.6);
         effect.setDamageOpponent(true);
         skill.addEffect(effect);
 
         Effect effect2 = new Effect();
-        effect2.setBeneficialEffect(Effect.BeneficialEffect.HEAL);
-        effect2.setOtherEffect(Effect.OtherEffect.AOE);
+        effect2.setEffectType(Effect.EffectType.HEAL);
+        effect2.setAoe(true);
         effect2.setScalesWith(Effect.ScalesWith.MAX_HP);
         effect2.setMultiplier(10);
         effect2.setDamageOpponent(false);
@@ -42,8 +42,8 @@ public class SkillCreator {
     public Skill createForceField() {
         Skill skill = new Skill();
         Effect effect = new Effect();
-        effect.setBeneficialEffect(Effect.BeneficialEffect.SHIELD);
-        effect.setOtherEffect(Effect.OtherEffect.AOE);
+        effect.setEffectType(Effect.EffectType.SHIELD);
+        effect.setAoe(true);
         effect.setScalesWith(Effect.ScalesWith.LEVEL);
         effect.setMultiplier(75);
         effect.setDamageOpponent(false);
